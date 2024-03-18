@@ -54,13 +54,15 @@ router.put("/user/:id", async (req, res) => {
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
+
     if (planItem && typeof planItem === "object") {
       if (!user.plan) {
-        user.plan.push(planItem);
+        user.plan = [planItem];
       } else {
         user.plan.push(planItem);
       }
     }
+
     user = await user.save();
 
     res.json(user);
