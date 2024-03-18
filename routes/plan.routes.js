@@ -15,7 +15,11 @@ router.get("/plans", async (req, res) => {
 // Route to update a specific plan's text by ID
 router.put("/plans/update/:id", async (req, res) => {
   try {
-    const plan = await Plan.findByIdAndUpdate(req.params.id, { text: req.body.text }, { new: true });
+    const plan = await Plan.findByIdAndUpdate(
+      req.params.id,
+      { text: req.body.text },
+      { new: true }
+    );
     if (!plan) {
       return res.status(404).json({ message: "Plan not found" });
     }
@@ -32,7 +36,7 @@ router.post("/plans/new", (req, res) => {
     const { text, user } = req.body;
     const plan = new Plan({ text, user });
     plan.save();
-    res.json({ plan });
+    res.json(plan);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
