@@ -56,7 +56,7 @@ router.put("/user/:id", async (req, res) => {
     }
     if (planItem && typeof planItem === "object") {
       if (!user.plan) {
-        user.plan = [planItem];
+        user.plan.push(planItem);
       } else {
         user.plan.push(planItem);
       }
