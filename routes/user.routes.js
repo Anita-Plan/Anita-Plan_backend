@@ -62,7 +62,6 @@ router.put("/user/:id", async (req, res) => {
         user.plan.push(planItem);
       }
     }
-
     user = await user.save();
 
     res.json(user);
@@ -70,5 +69,7 @@ router.put("/user/:id", async (req, res) => {
     res.status(400).json({ error: error.message });
   }
 });
+
+module.exports = router;
 
 module.exports = router;
