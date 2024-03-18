@@ -30,12 +30,11 @@ router.put("/plans/update/:id", async (req, res) => {
 });
 
 // Route to create a new plan
-router.post("/plans/new", (req, res) => {
-  console.log(req.body);
+router.post("/plans/new", async (req, res) => {
   try {
     const { text, user } = req.body;
     const plan = new Plan({ text, user });
-    plan.save();
+    await plan.save();
     res.json(plan);
   } catch (error) {
     res.status(400).json({ error: error.message });
